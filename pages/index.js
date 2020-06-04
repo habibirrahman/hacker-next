@@ -20,7 +20,20 @@ class Index extends React.Component {
       stories = [];
     }
 
-    return { stories, page };
+    return { page, stories };
+  }
+
+  componentDidMount() {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((registration) => {
+          console.log("service worker registration successful", registration);
+        })
+        .catch((err) => {
+          console.warn("service worker registration failed", err.message);
+        });
+    }
   }
 
   render() {
@@ -42,16 +55,16 @@ class Index extends React.Component {
             <a>Next Page ({page + 1})</a>
           </Link>
         </footer>
-        
+
         <style jsx>{`
-        footer {
-          padding: 1em;
-        }
-        footer a {
-          font-weight: bold;
-          color: black;
-          text-decoration: none;
-        }
+          footer {
+            padding: 1em;
+          }
+          footer a {
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+          }
         `}</style>
       </Layout>
     );
