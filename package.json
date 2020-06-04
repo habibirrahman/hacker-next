@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "start": "NODE_ENV=production node server.js",
-    "build": "next build",
-    "deploy": "now --public"
+    "build": "next build"
   },
   "author": "Habibirrahman",
   "license": "ISC",
